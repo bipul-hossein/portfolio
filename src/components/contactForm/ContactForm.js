@@ -1,12 +1,22 @@
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
-import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const form = useRef();
 
-    const handleEmail = (data) => {
-        console.log(data)
-    }
+    const sendEmail = (e) => {
+      e.preventDefault();
+     
+  
+      emailjs.sendForm('service_cgcafpu', 'template_9ewx5u4', form.current, 'MaBkrTfntxqhH9D89')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+    };
+  
 
 
 
@@ -15,23 +25,14 @@ const ContactForm = () => {
 
             <div className="contact-form-wrapper w-1/2 mx-auto mt-1 py-6">
                 <h2 className="text-4xl text-center py-3 text-white">Contacts</h2>
-                <form
-                    onSubmit={handleSubmit((handleEmail))}>
+             
+                    <form ref={form} onSubmit={sendEmail}>
+                        <input type="text" name="user_name" className="input input-bordered w-full" placeholder="Type your Name"/>       
+                        <input type="email" name="user_email"  className="input input-bordered w-full my-3" placeholder="Type your Email" />              
+                        <textarea name="message" className="w-full textarea textarea-bordered h-24" placeholder="Your Message"/>
+                        <input type="submit" value="Send" className='btn w-full mt-3 btn-accent'/>
+                    </form>
 
-                    <div className="form-control w-full">
-                        <input type="text" {...register("name", { required: "Name is Required" })} placeholder="Type your Name" className="input input-bordered w-full" />
-                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
-                    </div>
-
-                    <div className="form-control w-full my-3">
-                        <input type="email" {...register("email", { required: "email is Required" })} placeholder="Type your Email" className="input input-bordered w-full" />
-                        {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
-                    </div>
-
-                    <textarea {...register("message", { required: "message is Required" })} placeholder="Your Message" className="w-full textarea textarea-bordered h-24" />
-
-                    <input className='btn w-full mt-3' type="submit" />
-                </form>
             </div>
         </div>
     );
