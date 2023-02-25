@@ -6,18 +6,9 @@ import './Footer.css'
 const Footer = () => {
   return (
     <footer>
-
-
-
-    
-<Contact></Contact>
-
-
+      <Contact></Contact>
       <p className="copyright text-white">
-        Made with{' '}
-        <span role="img" aria-label="thinking">
-          ❤️
-        </span>{' '}
+      © Copyright 2020 Lorem Inc. All rights reserved
         by Bipul Hossain
       </p>
     </footer>

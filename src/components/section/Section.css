@@ -1,6 +1,12 @@
+.container_style {
+  padding-top: 14vh;
+}
 .section-title {
   font-size: 25pt;
   margin-bottom: 10px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
 }
 .underline {
   border-top: 4px solid #0be779;
